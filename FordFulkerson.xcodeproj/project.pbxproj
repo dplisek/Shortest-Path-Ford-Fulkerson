@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4576969177A275800DCB44E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576968177A275800DCB44E /* main.cpp */; };
-		B457696B177A275800DCB44E /* FordFulkerson.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B457696A177A275800DCB44E /* FordFulkerson.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +17,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				B457696B177A275800DCB44E /* FordFulkerson.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -27,7 +25,6 @@
 /* Begin PBXFileReference section */
 		B4576965177A275800DCB44E /* FordFulkerson */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FordFulkerson; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4576968177A275800DCB44E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B457696A177A275800DCB44E /* FordFulkerson.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = FordFulkerson.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				B4576968177A275800DCB44E /* main.cpp */,
-				B457696A177A275800DCB44E /* FordFulkerson.1 */,
 			);
 			path = FordFulkerson;
 			sourceTree = "<group>";
