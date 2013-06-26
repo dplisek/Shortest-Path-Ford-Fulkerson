@@ -165,6 +165,41 @@ int FordFulkerson(CGraph& g) {
 
 #ifndef __PROGTEST__
 int main(int argc, const char * argv[]) {
+    CGraph* g = new CGraph(8, 15, true);
+    
+    t_node startNode;
+    startNode.type = TYPE_START;
+    g->setNode(1, startNode);
+    for (int i = 2; i <= 7; i++) {
+        t_node normalNode;
+        normalNode.type = TYPE_NORMAL;
+        g->setNode(i, normalNode);
+    }
+    t_node endNode;
+    endNode.type = TYPE_END;
+    g->setNode(8, endNode);
+    
+    g->setEdge(1, t_edge(1, 2, 4));
+    g->setEdge(2, t_edge(1, 5, 3));
+    g->setEdge(3, t_edge(2, 3, 5));
+    g->setEdge(4, t_edge(2, 5, 2));
+    g->setEdge(5, t_edge(3, 4, 6));
+    g->setEdge(6, t_edge(4, 7, 2));
+    g->setEdge(7, t_edge(4, 8, 4));
+    g->setEdge(8, t_edge(5, 3, 2));
+    g->setEdge(9, t_edge(5, 6, 4));
+    g->setEdge(10, t_edge(6, 2, 2));
+    g->setEdge(11, t_edge(6, 3, 2));
+    g->setEdge(12, t_edge(6, 4, 2));
+    g->setEdge(13, t_edge(6, 7, 1));
+    g->setEdge(14, t_edge(7, 3, 2));
+    g->setEdge(15, t_edge(7, 8, 4));
+    
+    int flow = FordFulkerson(*g);
+    
+    cout << "Resulting graph:" << endl;
+    cout << g << endl;
+    cout << "Flow: " << flow << endl;
     
     return 0;
 }
