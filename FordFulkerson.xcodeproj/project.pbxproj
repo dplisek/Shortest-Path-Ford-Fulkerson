@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B4576969177A275800DCB44E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576968177A275800DCB44E /* main.cpp */; };
+		B4576977177A294C00DCB44E /* CGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576971177A294C00DCB44E /* CGraph.cpp */; };
+		B4576978177A294C00DCB44E /* t_edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576973177A294C00DCB44E /* t_edge.cpp */; };
+		B4576979177A294C00DCB44E /* t_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576975177A294C00DCB44E /* t_node.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		B4576965177A275800DCB44E /* FordFulkerson */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FordFulkerson; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4576968177A275800DCB44E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B4576971177A294C00DCB44E /* CGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGraph.cpp; sourceTree = "<group>"; };
+		B4576972177A294C00DCB44E /* CGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGraph.h; sourceTree = "<group>"; };
+		B4576973177A294C00DCB44E /* t_edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = t_edge.cpp; sourceTree = "<group>"; };
+		B4576974177A294C00DCB44E /* t_edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = t_edge.h; sourceTree = "<group>"; };
+		B4576975177A294C00DCB44E /* t_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = t_node.cpp; sourceTree = "<group>"; };
+		B4576976177A294C00DCB44E /* t_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = t_node.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +66,12 @@
 		B4576967177A275800DCB44E /* FordFulkerson */ = {
 			isa = PBXGroup;
 			children = (
+				B4576971177A294C00DCB44E /* CGraph.cpp */,
+				B4576972177A294C00DCB44E /* CGraph.h */,
+				B4576973177A294C00DCB44E /* t_edge.cpp */,
+				B4576974177A294C00DCB44E /* t_edge.h */,
+				B4576975177A294C00DCB44E /* t_node.cpp */,
+				B4576976177A294C00DCB44E /* t_node.h */,
 				B4576968177A275800DCB44E /* main.cpp */,
 			);
 			path = FordFulkerson;
@@ -114,6 +129,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4576969177A275800DCB44E /* main.cpp in Sources */,
+				B4576977177A294C00DCB44E /* CGraph.cpp in Sources */,
+				B4576978177A294C00DCB44E /* t_edge.cpp in Sources */,
+				B4576979177A294C00DCB44E /* t_node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
