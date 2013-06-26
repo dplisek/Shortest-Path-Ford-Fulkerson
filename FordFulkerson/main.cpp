@@ -46,8 +46,13 @@ void initStatesPDT(CGraph& g, int* states, int* p, int* d, int* t) {
     }
 }
 
-int getAnyOpenNode(CGraph& g) {
-    return 0;
+int getAnyOpenNode(CGraph& g, int* states) {
+    for (int i = 1; i <= g.getNodeCounter(); i++) {
+        if (states[i - 1] == STATE_OPEN) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 vector<int>* getAdjEdges(CGraph& g, int nodeIndex) {
@@ -75,7 +80,7 @@ bool findRoute(CGraph& g, int* p, int* d) {
     int t;
     initStatesPDT(g, states, p, d, &t);
     int u;
-    while ((u = getAnyOpenNode(g)) != -1) {
+    while ((u = getAnyOpenNode(g, states)) != -1) {
         states[u - 1] = STATE_CLOSED;
         vector<int>* adjEdges = getAdjEdges(g, u);
         for (vector<int>::iterator it = adjEdges->begin(); it != adjEdges->end(); it++) {
@@ -91,12 +96,12 @@ bool findRoute(CGraph& g, int* p, int* d) {
         vector<int>* adjEdgesMinus = getAdjEdgesMinus(g, u);
         for (vector<int>::iterator it = adjEdgesMinus->begin(); it != adjEdgesMinus->end(); it++) {
             t_edge adjEdge = g.getEdge(*it);
-            if (states[adjEdge.destinationIndex - 1] != STATE_FRESH || adjEdge.f <= 0) {
+            if (states[adjEdge.sourceIndex - 1] != STATE_FRESH || adjEdge.f <= 0) {
                 continue;
             }
-            states[adjEdge.destinationIndex - 1] = STATE_OPEN;
-            p[adjEdge.destinationIndex - 1] = -u;
-            d[adjEdge.destinationIndex - 1] = min(d[u - 1], adjEdge.f);
+            states[adjEdge.sourceIndex - 1] = STATE_OPEN;
+            p[adjEdge.sourceIndex - 1] = -u;
+            d[adjEdge.sourceIndex - 1] = min(d[u - 1], adjEdge.f);
         }
         delete adjEdgesMinus;
         if (u == t) break;
@@ -198,7 +203,7 @@ int main(int argc, const char * argv[]) {
     int flow = FordFulkerson(*g);
     
     cout << "Resulting graph:" << endl;
-    cout << g << endl;
+    cout << *g << endl;
     cout << "Flow: " << flow << endl;
     
     return 0;
