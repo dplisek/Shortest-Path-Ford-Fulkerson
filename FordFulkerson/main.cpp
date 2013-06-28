@@ -24,12 +24,7 @@
 using namespace std;
 
 void init(CGraph& g) {
-    for (int i = 1; i <= g.getEdgeCounter(); i++) {
-        t_edge e = g.getEdge(i);
-        e.f = 0;
-        g.setEdge(i, e);
     }
-}
 
 void initStatesPDT(CGraph& g, int* states, int* p, int* d, int* t) {
     for (int i = 1; i <= g.getNodeCounter(); i++) {
@@ -132,7 +127,7 @@ int getEdgeIndex(CGraph& g, int a, int b) {
     return -1;
 }
 
-void increaseFlow(CGraph& g, int* p, int* d) {
+bool increaseFlow(CGraph& g, int* p, int* d) {
     int s, t, u, v, sgn;
     getStartEnd(g, &s, &t);
     int x = t;
@@ -153,7 +148,27 @@ void increaseFlow(CGraph& g, int* p, int* d) {
             g.setEdge(edgeIndex, edge);
         }
         x = u;
-    } while (v != s);
+    } while (x != s);
+    return true;
+}
+
+int calculateFlowSize(CGraph& g) {
+    int s, t;
+    int flowSize = 0;
+    getStartEnd(g, &s, &t);
+    vector<int>* edgesFromStart = getAdjEdges(g, s);
+    for (vector<int>::iterator it = edgesFromStart->begin(); it != edgesFromStart->end(); it++) {
+        t_edge e = g.getEdge(*it);
+        flowSize += e.f;
+    }
+    delete edgesFromStart;
+    vector<int>* edgesToStart = getAdjEdgesMinus(g, s);
+    for (vector<int>::iterator it = edgesToStart->begin(); it != edgesToStart->end(); it++) {
+        t_edge e = g.getEdge(*it);
+        flowSize -= e.f;
+    }
+    delete edgesToStart;
+    return flowSize;
 }
 
 int FordFulkerson(CGraph& g) {
@@ -161,11 +176,13 @@ int FordFulkerson(CGraph& g) {
     int* p = new int[g.getNodeCounter()];
     int* d = new int[g.getNodeCounter()];
     while (findRoute(g, p, d)) {
-        increaseFlow(g, p, d);
+        if (!increaseFlow(g, p, d)) {
+            break;
+        }
     }
     delete [] p;
     delete [] d;
-    return 0;
+    return calculateFlowSize(g);
 }
 
 #ifndef __PROGTEST__
@@ -185,19 +202,19 @@ int main(int argc, const char * argv[]) {
     g->setNode(8, endNode);
     
     g->setEdge(1, t_edge(1, 2, 4));
-    g->setEdge(2, t_edge(1, 5, 3));
-    g->setEdge(3, t_edge(2, 3, 5));
-    g->setEdge(4, t_edge(2, 5, 2));
-    g->setEdge(5, t_edge(3, 4, 6));
-    g->setEdge(6, t_edge(4, 7, 2));
-    g->setEdge(7, t_edge(4, 8, 4));
-    g->setEdge(8, t_edge(5, 3, 2));
-    g->setEdge(9, t_edge(5, 6, 4));
-    g->setEdge(10, t_edge(6, 2, 2));
-    g->setEdge(11, t_edge(6, 3, 2));
-    g->setEdge(12, t_edge(6, 4, 2));
-    g->setEdge(13, t_edge(6, 7, 1));
-    g->setEdge(14, t_edge(7, 3, 2));
+    g->setEdge(2, t_edge(1, 3, 3));
+    g->setEdge(3, t_edge(2, 3, 2));
+    g->setEdge(4, t_edge(2, 4, 5));
+    g->setEdge(5, t_edge(3, 4, 2));
+    g->setEdge(6, t_edge(3, 5, 4));
+    g->setEdge(7, t_edge(4, 6, 6));
+    g->setEdge(8, t_edge(5, 2, 2));
+    g->setEdge(9, t_edge(5, 4, 2));
+    g->setEdge(10, t_edge(5, 6, 2));
+    g->setEdge(11, t_edge(5, 7, 1));
+    g->setEdge(12, t_edge(6, 7, 2));
+    g->setEdge(13, t_edge(6, 8, 4));
+    g->setEdge(14, t_edge(7, 4, 2));
     g->setEdge(15, t_edge(7, 8, 4));
     
     int flow = FordFulkerson(*g);
